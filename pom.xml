@@ -98,14 +98,29 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>jzy3d-repo</id>
+			<url>https://maven.jzy3d.org/releases</url>
+		</repository>
+		<repository>
+			<id>jzy3d-snapshots</id>
+			<url>https://maven.jzy3d.org/snapshots</url>
+		</repository>
+	</repositories>
 
 	<build>
-	<finalName>RRPS_PAT</finalName>
 		<plugins>
+			<!-- Plugin para executar o código Java com Maven -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<mainClass>com.VisNeo4j.App.MainApp</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
