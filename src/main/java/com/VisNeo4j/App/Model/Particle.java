@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Particle implements Comparable<Particle> {
 	/*Cada individuo está compuesto por: 
@@ -29,6 +30,20 @@ public class Particle implements Comparable<Particle> {
 		this.variables = new ArrayList<Double>(numVariables);
 		this.objectives = new ArrayList<Double>(numObjetives);
 		this.initExtra();
+	}
+
+	public static Particle gerarParticulaHeuristica(int numValores, int numObjetivos) {
+		Particle p = new Particle(numValores, numObjetivos);
+		List<Double> valores = new ArrayList<>();
+	
+		// Exemplo simples: 60% dos bits com valor 1.0 (ativo)
+		for (int i = 0; i < numValores; i++) {
+			double valor = Math.random() < 0.6 ? 1.0 : 0.0;
+			valores.add(valor);
+		}
+	
+		p.setVariables(valores);
+		return p;
 	}
 
 	public List<Double> getVariables() {
@@ -62,8 +77,6 @@ public class Particle implements Comparable<Particle> {
 	public void setIObjective(int pos, Double obj) {
 		this.objectives.set(pos, obj);
 	}
-
-	
 
 	@Override
 	public String toString() {

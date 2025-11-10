@@ -28,7 +28,14 @@ public class Population {
 	
 	private void populationPorDefecto(int numValores, int numObjetivos) {
 		for (int i = 0; i < this.numParticles; i++) {
-			this.population.add(i, new Particle(numValores, numObjetivos));
+			if (i < this.numParticles * 0.7) {
+				// 🔹 70% das partículas criadas de forma aleatória
+				this.population.add(i, new Particle(numValores, numObjetivos));
+			} else {
+				// 🔹 30% das partículas criadas de forma heurística
+				Particle heuristica = Particle.gerarParticulaHeuristica(numValores, numObjetivos);
+				this.population.add(i, heuristica);
+			}
 		}
 	}
 
